@@ -17,10 +17,11 @@ function draw() {
     }
 
     for (let i = 0; i < 10; i++) {
-
-        random(width * 0.3, width),
+        drawInnocentShape(
+            random(width * 0.3, width),
             random(0, height * 0.7),
-            random(width * 0.03, width * 0.12);
+            random(width * 0.03, width * 0.12)
+        );
 
 
     }
@@ -52,8 +53,31 @@ function drawGuiltyShape(x, y, w, h) {
     pop();
 }
 
+function drawInnocentShape(x, y, r) {
+    let c = random([
+        color(255, 250, 240, 160),
+        color(230, 240, 255, 160),
+        color(240, 255, 245, 160)
 
+    ]);
 
+    noStroke();
+    fill(c);
 
+    push();
+    translate(x, y);
 
+    beginShape();
+    let points = 8;
+    for (let i = 0; i < points; i++) {
+        let angle = TWO_PI * (i / points);
+        let radius = r * random(0.7, 1.2);
+        let cx = cos(angle) * radius;
+        let cy = sin(angle) * radius;
+        curveVertex(cx, cy);
+    }
+
+    endShape(CLOSE);
+    pop();
+}
 
