@@ -7,12 +7,12 @@ function draw() {
     drawBackground();
 
     for (let i = 0; i < 10; i++) {
-
-        random(0, width * 0.6),
+        drawGuiltyShape(
+            random(0, width * 0.6),
             random(height * 0.4, height),
             random(width * 0.1, width * 0.3),
-            random(height * 0.05, height * 0.25);
-
+            random(height * 0.05, height * 0.25)
+        );
 
     }
 
@@ -35,6 +35,23 @@ function drawBackground() {
         line(0, y, width, y);
     }
 }
+
+function drawGuiltyShape(x, y, w, h) {
+    fill(random([color(50, 0, 10), color(90, 20, 30, color(120, 30, 40))]));
+    noStroke();
+    push();
+    translate(x, y);
+    rotate(random(-0.4, 0.4));
+
+    beginShape();
+    vertex(-w / 2 + random(-20, 20), -h / 2 + random(-20, 20));
+    vertex(w / 2 + random(-20, 20), -h / 2 + random(-20, 20));
+    vertex(w / 2 + random(-20, 20), h / 2 + random(-20, 20));
+    vertex(-w / 2 + random(-20, 20), h / 2 + random(-20, 20));
+    endShape(CLOSE);
+    pop();
+}
+
 
 
 
