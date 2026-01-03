@@ -39,6 +39,16 @@ function mousePressed() {
     }
 }
 
+function keyPressed() {
+    if (key === "p" || key === "P") {
+        noLoop();
+    }
+
+    if (key === "l" || key === "L") {
+        loop();
+    }
+}
+
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     createShapes();
