@@ -117,4 +117,86 @@ function tekenZee() {
   rect(0, height / 2, width, height / 2 - 100);
   
   
+  golvenOffset += 0.02;
+  stroke(50, 130, 180);
+  strokeWeight(3);
+  for (let i = 0; i < 5; i++) {
+    let y = height / 2 + 20 + i * 25;
+    beginShape();
+    for (let x = 0; x <= width; x += 20) {
+      let golfY = y + sin(x * 0.02 + golvenOffset + i) * 8;
+      vertex(x, golfY);
+    }
+    endShape();
+  }
+  strokeWeight(1);
+}
+
+function tekenStrand() {
+  noStroke();
   
+  fill(240, 220, 150);
+  beginShape();
+  vertex(0, height - 100);
+  vertex(width, height - 100);
+  vertex(width, height);
+  vertex(0, height);
+  endShape(CLOSE);
+  
+  
+  fill(220, 200, 130);
+  for (let i = 0; i < 50; i++) {
+    let x = random(width);
+    let y = random(height - 100, height);
+    ellipse(x, y, 3, 2);
+  }
+}
+
+function tekenPalmboom(x, y, schaal) {
+  push();
+  translate(x, y);
+  scale(schaal);
+  
+ 
+  stroke(100, 70, 30);
+  strokeWeight(15);
+  
+  noFill();
+  beginShape();
+  vertex(0, 0);
+  bezierVertex(-20, -80, 10, -120, 0, -180);
+  endShape();
+  
+ 
+  let windOffset = sin(frameCount * 0.05) * 5; // Animatie
+  stroke(30, 120, 50);
+  strokeWeight(4);
+  for (let i = 0; i < 7; i++) {
+    let hoek = map(i, 0, 6, -PI / 2, PI / 2);
+    let bladX = cos(hoek) * 80 + windOffset;
+    let bladY = sin(hoek) * 40 - 180;
+    line(0, -180, bladX, bladY - 40);
+  }
+  
+  strokeWeight(1);
+  pop();
+}
+
+// === INTERACTIE ===
+
+function mousePressed() {
+  
+  vogels.push({
+    x: mouseX,
+    y: random(50, 150),
+    snelheid: random(1, 3)
+  });
+}
+
+function keyPressed() {
+  
+  if (key === 'n' || key === 'N') {
+   
+    console.log("Nacht modus - voeg dit toe als uitbreiding!");
+  }
+}
