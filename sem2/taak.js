@@ -24,3 +24,45 @@ function setup() {
   }
 }
 
+function draw() {
+  
+  tekenLucht();
+  
+  
+  zonY = lerp(zonY, mouseY, 0.05); // Smooth beweging
+  tekenZon(width / 2, constrain(zonY, 50, 400));
+  
+  
+  tekenWolk(100, 80);
+  tekenWolk(500, 120);
+  tekenWolk(300, 60);
+  
+  
+  for (let vogel of vogels) {
+    tekenVogel(vogel.x, vogel.y);
+    vogel.x += vogel.snelheid;
+    if (vogel.x > width + 20) {
+      vogel.x = -20;
+    }
+  }
+  
+  
+  tekenZee();
+  
+  
+  tekenStrand();
+  
+  
+  for (let palm of palmbomen) {
+    tekenPalmboom(palm.x, 420, palm.schaal);
+  }
+  
+  
+  fill(255, 200);
+  textSize(14);
+  textAlign(LEFT);
+  text("Beweeg muis omhoog/omlaag voor de zon", 20, height - 20);
+}
+
+
+
